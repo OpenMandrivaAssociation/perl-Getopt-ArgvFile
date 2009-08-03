@@ -1,19 +1,18 @@
-%define module	Getopt-ArgvFile
-%define name	perl-%{module}
-%define version 1.11
-%define	release	%mkrel 3
+%define upstream_name	 Getopt-ArgvFile
+%define upstream_version 1.11
 
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 1
+
 Summary:	Interpolates script options from files into @ARGV or another array
-License:	GPL or Artistic
+License:	GPL+ or Artistic
 Group:		Development/Perl
-Source0:	%{module}-%{version}.tar.bz2
-Url:		http://search.cpan.org/dist/%{module}
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	%{upstream_name}-%{upstream_version}.tar.bz2
+
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	perl-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 This module simply interpolates option file hints in @ARGV by the contents of
@@ -23,7 +22,7 @@ process any array instead of @ARGV which is used by default and mentioned
 mostly in this manual.
 
 %prep
-%setup -q -n %{module}-%{version}
+%setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
 %__perl Makefile.PL INSTALLDIRS=vendor
@@ -44,4 +43,3 @@ rm -rf $RPM_BUILD_ROOT
 %doc README
 %{perl_vendorlib}/Getopt/*
 %{_mandir}/*/*
-
