@@ -1,9 +1,9 @@
 %define upstream_name	 Getopt-ArgvFile
 %define upstream_version 1.11
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 1
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	2
 
 Summary:	Interpolates script options from files into @ARGV or another array
 License:	GPL+ or Artistic
@@ -11,8 +11,8 @@ Group:		Development/Perl
 Url:		http://search.cpan.org/dist/%{upstream_name}
 Source0:	%{upstream_name}-%{upstream_version}.tar.bz2
 
+BuildRequires:	perl-devel
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 This module simply interpolates option file hints in @ARGV by the contents of
@@ -25,21 +25,41 @@ mostly in this manual.
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%__perl Makefile.PL INSTALLDIRS=vendor
-%__make
+perl Makefile.PL INSTALLDIRS=vendor
+make
 
 %check
-%__make test
+make test
 
 %install
-rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
-%clean 
-rm -rf $RPM_BUILD_ROOT
-
 %files
-%defattr(-,root,root)
 %doc README
 %{perl_vendorlib}/Getopt/*
 %{_mandir}/*/*
+
+%changelog
+* Mon Aug 03 2009 Jérôme Quelin <jquelin@mandriva.org> 1.110.0-1mdv2010.0
++ Revision: 407751
+- rebuild using %%perl_convert_version
+
+* Thu Jul 31 2008 Thierry Vignaud <tv@mandriva.org> 1.11-3mdv2009.0
++ Revision: 257092
+- rebuild
+
+* Thu Dec 20 2007 Olivier Blin <oblin@mandriva.com> 1.11-1mdv2008.1
++ Revision: 135841
+- restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Tue May 01 2007 Olivier Thauvin <nanardon@mandriva.org> 1.11-1mdv2008.0
++ Revision: 20098
+- 1.11
+
+
+* Fri Feb 17 2006 Rafael Garcia-Suarez <rgarciasuarez@mandriva.com> 1.10-1mdk
+- Initial Mandriva release.
+
