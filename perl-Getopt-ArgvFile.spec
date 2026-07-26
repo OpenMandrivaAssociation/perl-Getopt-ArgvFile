@@ -1,15 +1,13 @@
 %define upstream_name	 Getopt-ArgvFile
-%define upstream_version 1.11
-
 Name:		perl-%{upstream_name}
-Version:	%{upstream_version}
-Release:	5
+Version:	1.11
+Release:	6
 
 Summary:	Interpolates script options from files into @ARGV or another array
 License:	GPL+ or Artistic
 Group:		Development/Perl
 Url:		https://metacpan.org/dist/Getopt-ArgvFile
-Source0:	https://cpan.metacpan.org/authors/id/J/JS/JSTENZEL/Getopt-ArgvFile-%{upstream_version}.tar.gz
+Source0:	https://cpan.metacpan.org/authors/id/J/JS/JSTENZEL/Getopt-ArgvFile-%{version}.tar.gz
 
 BuildRequires:	make
 BuildRequires:	perl-devel
@@ -23,7 +21,7 @@ process any array instead of @ARGV which is used by default and mentioned
 mostly in this manual.
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version}
+%setup -q -n %{upstream_name}-%{version}
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor
@@ -43,9 +41,7 @@ make test
 %changelog
 * Mon Aug 03 2009 Jérôme Quelin <jquelin@mandriva.org> 1.110.0-1mdv2010.0
 + Revision: 407751
-- rebuild using %%perl_convert_version
-
-* Thu Jul 31 2008 Thierry Vignaud <tv@mandriva.org> 1.11-3mdv2009.0
+- rebuild using %1.11 Thu Jul 31 2008 Thierry Vignaud <tv@mandriva.org> 1.11-3mdv2009.0
 + Revision: 257092
 - rebuild
 
